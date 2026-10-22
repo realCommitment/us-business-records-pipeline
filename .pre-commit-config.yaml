@@ -1,0 +1,25 @@
+# Tools run through uv so their versions come from uv.lock.
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff format --check
+        entry: uv run ruff format --check
+        language: system
+        types: [python]
+      - id: mypy
+        name: mypy --strict
+        entry: uv run mypy
+        language: system
+        types: [python]
+        pass_filenames: false
+      - id: no-skipped-tests
+        name: no skip or xfail in tests
+        entry: pytest\.(mark\.)?skip|xfail
+        language: pygrep
+        files: ^tests/

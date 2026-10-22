@@ -1,0 +1,32 @@
+[project]
+name = "retiring-business-owners"
+version = "0.1.0"
+requires-python = ">=3.14,<3.15"
+dependencies = ["duckdb==1.5.6", "requests==2.34.2"]
+
+[dependency-groups]
+dev = ["pytest", "ruff", "mypy", "pre-commit", "types-requests"]
+
+[tool.ruff]
+# .astro is generated and marked do-not-edit; the Astro example test stays as the template wrote it
+extend-exclude = [".astro", "tests/dags/test_dag_example.py"]
+# pre-commit passes file names explicitly, which bypasses exclude unless forced
+force-exclude = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "TID"]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"airflow".msg = "pipeline code must stay importable and testable on the host, where Airflow is not installed; only dags/ may import it"
+
+[tool.ruff.lint.per-file-ignores]
+"dags/**" = ["TID251"]
+"tests/dags/**" = ["TID251"]
+
+[tool.mypy]
+strict = true
+files = ["include", "tests/unit"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests/unit"]

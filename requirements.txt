@@ -1,0 +1,2 @@
+# keep equal to pyproject.toml; the image installs from this file
+duckdb==1.5.6

@@ -1,0 +1,19 @@
+# host uid 1000 owns the bind mounts; the image's uid 50000 gets Permission denied writing include/data. gid 0 keeps the image's group-writable dirs writable.
+# uid 1000 has no passwd entry in the image, so Airflow's getpass.getuser() needs USER.
+services:
+  scheduler:
+    user: "1000:0"
+    environment:
+      USER: astro
+  dag-processor:
+    user: "1000:0"
+    environment:
+      USER: astro
+  api-server:
+    user: "1000:0"
+    environment:
+      USER: astro
+  triggerer:
+    user: "1000:0"
+    environment:
+      USER: astro

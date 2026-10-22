@@ -1,0 +1,10 @@
+[tools]
+python = "3.14"
+uv = "0.13.0"
+astro = "1.46.0"
+
+[env]
+_.python.venv = { path = ".venv", create = true }
+
+[tasks.check]
+run = ["uv run pre-commit run --all-files", "uv run pytest tests/unit -q", "astro dev parse"]

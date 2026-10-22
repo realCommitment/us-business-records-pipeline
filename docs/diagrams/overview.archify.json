@@ -1,0 +1,618 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "65.1M public records from 15 sources to 44.8M businesses",
+    "subtitle": "Apache Airflow 3 · Astro Runtime · Docker · DuckDB · Apache Parquet · Python 3.14",
+    "locale": "en",
+    "output": "docs/diagrams/overview.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "dol",
+      "type": "external",
+      "label": "DOL Form 5500",
+      "sublabel": "14.7M filings",
+      "pos": [
+        40,
+        70
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "ppp",
+      "type": "external",
+      "label": "SBA PPP",
+      "sublabel": "11.5M loans",
+      "pos": [
+        40,
+        114
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "fmcsa",
+      "type": "external",
+      "label": "FMCSA census",
+      "sublabel": "4.5M carriers",
+      "pos": [
+        40,
+        158
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "sba",
+      "type": "external",
+      "label": "SBA 7(a) · 504",
+      "sublabel": "2.2M loans",
+      "pos": [
+        40,
+        202
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "sam",
+      "type": "external",
+      "label": "SAM.gov",
+      "sublabel": "906K entities",
+      "pos": [
+        40,
+        246
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "fl",
+      "type": "external",
+      "label": "Florida",
+      "sublabel": "13.0M records",
+      "pos": [
+        40,
+        414
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "tx",
+      "type": "external",
+      "label": "Texas",
+      "sublabel": "4.4M records",
+      "pos": [
+        40,
+        458
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "ny",
+      "type": "external",
+      "label": "New York",
+      "sublabel": "4.3M records",
+      "pos": [
+        40,
+        502
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "co",
+      "type": "external",
+      "label": "Colorado",
+      "sublabel": "3.1M records",
+      "pos": [
+        40,
+        546
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "pa",
+      "type": "external",
+      "label": "Pennsylvania",
+      "sublabel": "2.4M records",
+      "pos": [
+        40,
+        590
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "va",
+      "type": "external",
+      "label": "Virginia",
+      "sublabel": "1.5M records",
+      "pos": [
+        40,
+        634
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "ct",
+      "type": "external",
+      "label": "Connecticut",
+      "sublabel": "1.3M records",
+      "pos": [
+        40,
+        678
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "or",
+      "type": "external",
+      "label": "Oregon",
+      "sublabel": "569K records",
+      "pos": [
+        40,
+        722
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "dc",
+      "type": "external",
+      "label": "Washington, DC",
+      "sublabel": "506K records",
+      "pos": [
+        40,
+        766
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "ia",
+      "type": "external",
+      "label": "Iowa",
+      "sublabel": "348K records",
+      "pos": [
+        40,
+        810
+      ],
+      "size": [
+        156,
+        36
+      ]
+    },
+    {
+      "id": "national",
+      "type": "backend",
+      "label": "national/",
+      "sublabel": "one module per source",
+      "tag": "Airflow · if-changed GET",
+      "brand": "apache-airflow",
+      "pos": [
+        300,
+        126
+      ],
+      "size": [
+        150,
+        100
+      ]
+    },
+    {
+      "id": "states",
+      "type": "backend",
+      "label": "states/",
+      "sublabel": "one module per state",
+      "tag": "Airflow · if-changed GET",
+      "brand": "apache-airflow",
+      "pos": [
+        300,
+        545
+      ],
+      "size": [
+        150,
+        170
+      ]
+    },
+    {
+      "id": "raw",
+      "type": "database",
+      "label": "raw/",
+      "sublabel": "191 files · 48.8 GB",
+      "tag": "never edited",
+      "pos": [
+        300,
+        315
+      ],
+      "size": [
+        150,
+        66
+      ]
+    },
+    {
+      "id": "stage",
+      "type": "database",
+      "label": "stage/*.parquet",
+      "sublabel": "65.1M typed rows",
+      "tag": "DuckDB",
+      "brand": {
+        "url": "https://duckdb.org/",
+        "sha256": "39395cbfe086812dc2584ecf763926c6da0497dd090fa4d4db886d7cbaa3d434"
+      },
+      "pos": [
+        560,
+        315
+      ],
+      "size": [
+        150,
+        66
+      ]
+    },
+    {
+      "id": "merge",
+      "type": "backend",
+      "label": "Entity resolution",
+      "sublabel": "7 tiers · Jaro-Winkler",
+      "tag": "DuckDB SQL",
+      "brand": {
+        "url": "https://duckdb.org/",
+        "sha256": "39395cbfe086812dc2584ecf763926c6da0497dd090fa4d4db886d7cbaa3d434"
+      },
+      "pos": [
+        800,
+        315
+      ],
+      "size": [
+        150,
+        66
+      ]
+    },
+    {
+      "id": "naics",
+      "type": "database",
+      "label": "NAICS 2017",
+      "sublabel": "sector · group · title",
+      "pos": [
+        800,
+        480
+      ],
+      "size": [
+        150,
+        56
+      ]
+    },
+    {
+      "id": "mart",
+      "type": "database",
+      "label": "businesses.parquet",
+      "sublabel": "44.8M rows · 127 columns",
+      "tag": "Apache Parquet",
+      "brand": {
+        "url": "https://parquet.apache.org/",
+        "sha256": "4e3e2f213c04ffe32d9b3fc94492e74caf42e5dc81f142172ddd9d7d9a4b6dab"
+      },
+      "pos": [
+        1040,
+        315
+      ],
+      "size": [
+        150,
+        66
+      ]
+    },
+    {
+      "id": "consumers",
+      "type": "frontend",
+      "label": "Analysts",
+      "sublabel": "SQL · notebooks",
+      "tag": "Python · DuckDB",
+      "brand": "python",
+      "pos": [
+        1040,
+        165
+      ],
+      "size": [
+        150,
+        66
+      ]
+    },
+    {
+      "id": "qc",
+      "type": "backend",
+      "label": "qc gate",
+      "sublabel": "row floors per source",
+      "tag": "fails loudly",
+      "pos": [
+        1040,
+        475
+      ],
+      "size": [
+        150,
+        66
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Federal datasets · 5",
+      "wraps": [
+        "dol",
+        "ppp",
+        "fmcsa",
+        "sba",
+        "sam"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "region",
+      "label": "State registries · 10 states",
+      "wraps": [
+        "fl",
+        "tx",
+        "ny",
+        "co",
+        "pa",
+        "va",
+        "ct",
+        "or",
+        "dc",
+        "ia"
+      ],
+      "pad": 12
+    },
+    {
+      "kind": "security-group",
+      "label": "Docker · Astro Runtime 3.3 · Airflow 3",
+      "wraps": [
+        "national",
+        "states",
+        "raw",
+        "stage",
+        "merge",
+        "naics"
+      ],
+      "pad": 14
+    }
+  ],
+  "connections": [
+    {
+      "id": "dol-national",
+      "from": "dol",
+      "to": "national",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "ppp-national",
+      "from": "ppp",
+      "to": "national",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "fmcsa-national",
+      "from": "fmcsa",
+      "to": "national",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "sba-national",
+      "from": "sba",
+      "to": "national",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "sam-national",
+      "from": "sam",
+      "to": "national",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "fl-states",
+      "from": "fl",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "tx-states",
+      "from": "tx",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "ny-states",
+      "from": "ny",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "co-states",
+      "from": "co",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "pa-states",
+      "from": "pa",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "va-states",
+      "from": "va",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "ct-states",
+      "from": "ct",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "or-states",
+      "from": "or",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "dc-states",
+      "from": "dc",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "ia-states",
+      "from": "ia",
+      "to": "states",
+      "fromSide": "right",
+      "toSide": "left",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "national-raw",
+      "from": "national",
+      "to": "raw",
+      "variant": "emphasis"
+    },
+    {
+      "id": "states-raw",
+      "from": "states",
+      "to": "raw",
+      "variant": "emphasis"
+    },
+    {
+      "id": "raw-stage",
+      "from": "raw",
+      "to": "stage",
+      "label": "stream + cast",
+      "variant": "emphasis"
+    },
+    {
+      "id": "stage-merge",
+      "from": "stage",
+      "to": "merge",
+      "label": "match keys",
+      "variant": "emphasis"
+    },
+    {
+      "id": "naics-merge",
+      "from": "naics",
+      "to": "merge",
+      "label": "industry titles"
+    },
+    {
+      "id": "merge-mart",
+      "from": "merge",
+      "to": "mart",
+      "label": "1 row each",
+      "variant": "emphasis"
+    },
+    {
+      "id": "mart-qc",
+      "from": "mart",
+      "to": "qc",
+      "label": "row floors"
+    },
+    {
+      "id": "mart-consumers",
+      "from": "mart",
+      "to": "consumers",
+      "label": "SQL"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Extract, untouched",
+      "items": [
+        "Every file is stored exactly as published, with a .meta.json sidecar",
+        "HEAD validators, a SHA-256, a one-byte ranged GET or SFTP size and mtime decide 'unchanged'",
+        "Every write goes to .part and then os.replace, so a crash never leaves half a file"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Merge, never guess",
+      "items": [
+        "A record joins a business only when exactly one candidate fits",
+        "Tiers: name + ZIP5, name + city, Jaro-Winkler 0.92 at the same street number, trade name, then plan sponsors",
+        "Links only point at anchors, so one bad link cannot chain two businesses together"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "One output",
+      "items": [
+        "Industry, years in business, Google Maps lookup details and open status for every row",
+        "Unchanged input gives a byte-identical file, with the same SHA-256 on every run",
+        "No business filtering: every cut belongs to the consumer"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+scripts:
+  setup: |
+    export PATH="$HOME/.local/bin:$PATH"
+    mise trust
+    mise install
+    mise exec -- uv sync
+    mise exec -- uv run pre-commit install
+setupAgentStartupPolicy: wait-for-setup

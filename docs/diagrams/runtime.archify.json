@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Local runtime: Astro, Airflow 3 and DuckDB",
+    "locale": "en",
+    "output": "docs/diagrams/runtime.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    { "id": "owner", "type": "external", "label": "Owner", "sublabel": "browser · terminal", "pos": [40, 200], "size": [130, 60] },
+    { "id": "ui", "type": "frontend", "label": "Airflow UI", "sublabel": "API server :8080", "pos": [270, 200], "size": [140, 60] },
+    { "id": "scheduler", "type": "backend", "label": "Scheduler", "sublabel": "LocalExecutor", "tag": "Airflow 3.3.2", "pos": [510, 200], "size": [140, 60] },
+    { "id": "metadb", "type": "database", "label": "Postgres", "sublabel": "Airflow metadata", "pos": [510, 480], "size": [140, 60] },
+    { "id": "dag", "type": "backend", "label": "retiring_owners", "sublabel": "@daily DAG · mapped tasks", "pos": [750, 200], "size": [150, 60] },
+    { "id": "pipeline", "type": "backend", "label": "include/pipeline", "sublabel": "plain Python, no Airflow", "pos": [1000, 200], "size": [160, 60] },
+    { "id": "portals", "type": "cloud", "label": "Public data portals", "sublabel": "Socrata · CKAN · SFTP · S3", "pos": [1000, 60], "size": [160, 60] },
+    { "id": "duckdb", "type": "database", "label": "DuckDB 1.5.6", "sublabel": "in-process · spills to disk", "pos": [1000, 340], "size": [160, 60] },
+    { "id": "data", "type": "database", "label": "include/data/", "sublabel": "host bind mount", "tag": "gitignored", "pos": [1000, 620], "size": [160, 60] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Docker · Astro Runtime 3.3-9", "wraps": ["ui", "scheduler", "metadb", "dag", "pipeline", "duckdb"], "pad": 40 },
+    { "kind": "security-group", "label": "scheduler container · uid 1000", "wraps": ["scheduler", "dag", "pipeline", "duckdb"] }
+  ],
+  "connections": [
+    { "id": "owner-ui", "from": "owner", "to": "ui", "label": "trigger runs", "variant": "emphasis" },
+    { "id": "ui-scheduler", "from": "ui", "to": "scheduler", "label": "queue run", "variant": "emphasis" },
+    { "id": "scheduler-metadb", "from": "scheduler", "to": "metadb", "label": "task state" },
+    { "id": "scheduler-dag", "from": "scheduler", "to": "dag", "label": "run tasks", "variant": "emphasis" },
+    { "id": "dag-pipeline", "from": "dag", "to": "pipeline", "label": "plain calls", "variant": "emphasis" },
+    { "id": "pipeline-portals", "from": "pipeline", "to": "portals", "label": "if-changed GET" },
+    { "id": "pipeline-duckdb", "from": "pipeline", "to": "duckdb", "label": "SQL + macros", "variant": "emphasis" },
+    { "id": "duckdb-data", "from": "duckdb", "to": "data", "label": "Parquet, atomic", "variant": "emphasis" },
+    { "id": "owner-data", "from": "owner", "to": "data", "label": "DuckDB on host", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Runtime",
+      "items": [
+        "Astro CLI 1.46 and Astro Runtime 3.3-9: Airflow 3.3.2 on Python 3.14",
+        "LocalExecutor, so tasks run inside the scheduler container, as uid 1000 to write the host mount",
+        "Mapped downloads and stages run at most three at a time"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Pipeline code",
+      "items": [
+        "include/ never imports Airflow, enforced by a Ruff banned-API rule",
+        "Every transform runs and is tested on the host, without Airflow",
+        "Each state is one module: adding a state is one file and one line"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Storage",
+      "items": [
+        "Files, not a database: raw/, stage/ and marts/",
+        "DuckDB runs in-process with a memory_limit and spills to a temp directory",
+        "The owner queries include/data/ from the host with DuckDB"
+      ]
+    }
+  ]
+}

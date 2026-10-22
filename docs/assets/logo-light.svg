@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="120" viewBox="0 0 660 120" role="img" aria-label="Retiring Business Owners">
+  <g transform="translate(10 20)">
+    <rect x="0" y="0" width="38" height="14" rx="4" fill="#0891b2"/>
+    <rect x="0" y="33" width="38" height="14" rx="4" fill="#7c3aed"/>
+    <rect x="0" y="66" width="38" height="14" rx="4" fill="#64748b"/>
+    <path d="M40 7 C62 7 62 40 86 40 M40 40 H86 M40 73 C62 73 62 40 86 40" fill="none" stroke="#10b981" stroke-width="3.5" stroke-linecap="round"/>
+    <rect x="86" y="24" width="32" height="32" rx="8" fill="#10b981"/>
+  </g>
+  <text x="152" y="62" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="36" font-weight="700" fill="#0f172a">Retiring Business Owners</text>
+  <text x="153" y="92" font-family="'JetBrains Mono', Menlo, Consolas, monospace" font-size="14" letter-spacing="1.5" fill="#475569">PUBLIC RECORDS → ONE ROW PER BUSINESS</text>
+</svg>

@@ -1,0 +1,95 @@
+{
+ "_embedded": {
+  "customS3ObjectSummaryList": [
+   {
+    "displayKey": "SAM_PUBLIC_MONTHLY_V2_20261005.ZIP",
+    "dateModified": "Oct 04,2026",
+    "bucketName": "falextracts",
+    "key": "Entity Registration/Public V2/SAM_PUBLIC_MONTHLY_V2_20261005.ZIP",
+    "description": "This data package contains the entity registration data publicly available under the Freedom of Information Act (FOIA) for those registered in SAM to do business with the Federal government. The monthly file is a refresh file for all active registration records and those which expired in the past six months with the Unique Entity Identifier (UEI) fields added.",
+    "privacy": "Public",
+    "fileFormat": "ZIP, Pipe-Delimited",
+    "_links": {
+     "self": {
+      "href": "https://s3.amazonaws.com/falextracts/Entity Registration/Public V2/SAM_PUBLIC_MONTHLY_V2_20261005.ZIP"
+     }
+    }
+   },
+   {
+    "displayKey": "SAM_PUBLIC_UTF-8_MONTHLY_V2_20261005.ZIP",
+    "dateModified": "Oct 04,2026",
+    "bucketName": "falextracts",
+    "key": "Entity Registration/Public V2/SAM_PUBLIC_UTF-8_MONTHLY_V2_20261005.ZIP",
+    "description": "This data package contains the entity registration data publicly available under the Freedom of Information Act (FOIA) for those registered in SAM to do business with the Federal government. The monthly file is a refresh file for all active registration records and those which expired in the past six months with the Unique Entity Identifier (UEI) fields added.",
+    "privacy": "Public",
+    "fileFormat": "ZIP, Pipe-Delimited",
+    "_links": {
+     "self": {
+      "href": "https://s3.amazonaws.com/falextracts/Entity Registration/Public V2/SAM_PUBLIC_UTF-8_MONTHLY_V2_20261005.ZIP"
+     }
+    }
+   },
+   {
+    "displayKey": "SAM_PUBLIC_MONTHLY_V2_20260907.ZIP",
+    "dateModified": "Sep 07,2026",
+    "bucketName": "falextracts",
+    "key": "Entity Registration/Public V2/SAM_PUBLIC_MONTHLY_V2_20260907.ZIP",
+    "description": "This data package contains the entity registration data publicly available under the Freedom of Information Act (FOIA) for those registered in SAM to do business with the Federal government. The monthly file is a refresh file for all active registration records and those which expired in the past six months with the Unique Entity Identifier (UEI) fields added.",
+    "privacy": "Public",
+    "fileFormat": "ZIP, Pipe-Delimited",
+    "_links": {
+     "self": {
+      "href": "https://s3.amazonaws.com/falextracts/Entity Registration/Public V2/SAM_PUBLIC_MONTHLY_V2_20260907.ZIP"
+     }
+    }
+   },
+   {
+    "displayKey": "SAM_PUBLIC_UTF-8_MONTHLY_V2_20260907.ZIP",
+    "dateModified": "Sep 07,2026",
+    "bucketName": "falextracts",
+    "key": "Entity Registration/Public V2/SAM_PUBLIC_UTF-8_MONTHLY_V2_20260907.ZIP",
+    "description": "This data package contains the entity registration data publicly available under the Freedom of Information Act (FOIA) for those registered in SAM to do business with the Federal government. The monthly file is a refresh file for all active registration records and those which expired in the past six months with the Unique Entity Identifier (UEI) fields added.",
+    "privacy": "Public",
+    "fileFormat": "ZIP, Pipe-Delimited",
+    "_links": {
+     "self": {
+      "href": "https://s3.amazonaws.com/falextracts/Entity Registration/Public V2/SAM_PUBLIC_UTF-8_MONTHLY_V2_20260907.ZIP"
+     }
+    }
+   },
+   {
+    "displayKey": "SAM_PUBLIC_MONTHLY_V2_20260906.ZIP",
+    "dateModified": "Sep 06,2026",
+    "bucketName": "falextracts",
+    "key": "Entity Registration/Public V2/SAM_PUBLIC_MONTHLY_V2_20260906.ZIP",
+    "description": "This data package contains the entity registration data publicly available under the Freedom of Information Act (FOIA) for those registered in SAM to do business with the Federal government. The monthly file is a refresh file for all active registration records and those which expired in the past six months with the Unique Entity Identifier (UEI) fields added.",
+    "privacy": "Public",
+    "fileFormat": "ZIP, Pipe-Delimited",
+    "_links": {
+     "self": {
+      "href": "https://s3.amazonaws.com/falextracts/Entity Registration/Public V2/SAM_PUBLIC_MONTHLY_V2_20260906.ZIP"
+     }
+    }
+   },
+   {
+    "displayKey": "SAM_PUBLIC_UTF-8_MONTHLY_V2_20260906.ZIP",
+    "dateModified": "Sep 06,2026",
+    "bucketName": "falextracts",
+    "key": "Entity Registration/Public V2/SAM_PUBLIC_UTF-8_MONTHLY_V2_20260906.ZIP",
+    "description": "This data package contains the entity registration data publicly available under the Freedom of Information Act (FOIA) for those registered in SAM to do business with the Federal government. The monthly file is a refresh file for all active registration records and those which expired in the past six months with the Unique Entity Identifier (UEI) fields added.",
+    "privacy": "Public",
+    "fileFormat": "ZIP, Pipe-Delimited",
+    "_links": {
+     "self": {
+      "href": "https://s3.amazonaws.com/falextracts/Entity Registration/Public V2/SAM_PUBLIC_UTF-8_MONTHLY_V2_20260906.ZIP"
+     }
+    }
+   }
+  ]
+ },
+ "_links": {
+  "self": {
+   "href": "https://api-umbrella.prod-iae.bsp.gsa.gov/prod/fileextractservices/v1/api/listfiles?domain=Entity Registration/Public V2"
+  }
+ }
+}

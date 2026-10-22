@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Entity resolution in five steps",
+    "locale": "en",
+    "output": "docs/diagrams/entity-resolution.html",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "backend": { "label": "Resolution step" },
+        "database": { "label": "Parquet file" }
+      }
+    }
+  },
+  "lanes": [
+    { "id": "inputs", "label": "Stage files" },
+    { "id": "resolve", "label": "Resolution" },
+    { "id": "output", "label": "Mart" }
+  ],
+  "mainPath": ["anchors", "sponsors", "records", "leftovers", "onehop", "mart"],
+  "nodes": [
+    { "id": "registry", "lane": "inputs", "col": 0, "type": "database", "label": "Registry entities", "sublabel": "10 states + trade names" },
+    { "id": "form5500", "lane": "inputs", "col": 1, "type": "database", "label": "Form 5500 sponsors", "sublabel": "keyed by EIN" },
+    { "id": "others", "lane": "inputs", "col": 2, "type": "database", "label": "Other records", "sublabel": "PPP · SBA · SAM · FMCSA" },
+    { "id": "anchors", "lane": "resolve", "col": 0, "type": "backend", "label": "1 · Anchors", "sublabel": "entity = business" },
+    { "id": "sponsors", "lane": "resolve", "col": 1, "type": "backend", "label": "2 · Sponsors", "sublabel": "EIN, then tiers 1-3" },
+    { "id": "records", "lane": "resolve", "col": 2, "type": "backend", "label": "3 · Records", "sublabel": "tiers 1-4, then 5-7" },
+    { "id": "leftovers", "lane": "resolve", "col": 3, "type": "backend", "label": "4 · Leftovers", "sublabel": "name + ZIP5 groups" },
+    { "id": "onehop", "lane": "resolve", "col": 4, "type": "backend", "label": "5 · One hop", "sublabel": "sponsor joins anchor" },
+    { "id": "mart", "lane": "output", "col": 4, "type": "database", "label": "businesses.parquet", "sublabel": "44.8M businesses" }
+  ],
+  "edges": [
+    { "id": "registry-anchors", "from": "registry", "to": "anchors", "label": "entities" },
+    { "id": "form5500-sponsors", "from": "form5500", "to": "sponsors", "label": "EIN + address" },
+    { "id": "others-records", "from": "others", "to": "records", "label": "name + ZIP" },
+    { "id": "anchors-sponsors", "from": "anchors", "to": "sponsors", "variant": "emphasis" },
+    { "id": "sponsors-records", "from": "sponsors", "to": "records", "variant": "emphasis" },
+    { "id": "records-leftovers", "from": "records", "to": "leftovers", "label": "no unique fit", "variant": "emphasis" },
+    { "id": "leftovers-onehop", "from": "leftovers", "to": "onehop", "variant": "emphasis" },
+    { "id": "onehop-mart", "from": "onehop", "to": "mart", "label": "1 row each", "variant": "emphasis" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Match tiers",
+      "items": [
+        "1: normalized name and ZIP5 in the same state",
+        "2: normalized name and city in the same state",
+        "3: Jaro-Winkler 0.92 or more at the same ZIP5 and street number",
+        "4: a registered trade name in the same ZIP5; 5 to 7: tiers 1 to 3 against plan sponsors"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "No guessing",
+      "items": [
+        "A tier accepts a candidate only when exactly one fits; ambiguity falls through",
+        "Two rows for one business are acceptable; one row for two businesses is not",
+        "A sponsor never joins a registry entity that carries a different EIN"
+      ]
+    }
+  ]
+}
